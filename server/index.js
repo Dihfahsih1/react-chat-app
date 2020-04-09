@@ -10,9 +10,15 @@ const io = socketio(server);
 
 io.on('connection', (socket) =>{
   console.log('We gotta new connection!!!');
+
+  socket.on('Join', ({name, room}) =>{
+    console.log(name, room);
+  });
+
   socket.on('disconnect', () =>{
     console.log('User had left!!!');
   })
+
 });
 app.use(router);
 server.listen(PORT, () => console.log('Server has started'));
