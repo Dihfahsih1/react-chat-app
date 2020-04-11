@@ -11,7 +11,6 @@ const io = socketio(server);
 io.on('connection', (socket) =>{
   socket.on('Join', ({name, room}, callback) =>{
     const { error, user} = addUser({ id: socket.id, name, room });
-
     if(error) return callback(error);
 
     socket.emit('message', {user: 'admin', text: `${user.name}, welcome to the room ${user.room}` });
